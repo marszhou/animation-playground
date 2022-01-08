@@ -1,0 +1,382 @@
+body {
+  background-color: black;
+}
+.hide {
+  display: none;
+}
+.eye {
+  position: relative;
+  display: inline-block;
+}
+.left-skew {
+  transform: skewX(15deg);
+}
+.anti-left-skew {
+  transform: skewX(-15deg);
+}
+.eye-outline {
+  /* border-radius: 100% 0; */
+  border-radius: 0 70px 0 50px;
+  background-color: white;
+  width: 130px;
+  height: 70px;
+}
+
+.eye-shadow {
+  display: block;
+  width: 130px;
+  height: 70px;
+  position: absolute;
+  top: 0;
+  z-index: 5;
+  border-radius: 0 90px 0 60px;
+  box-shadow: 5px 12px 2px 5px rgb(0 0 0 / 25%) inset;
+}
+
+.eye-base {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.eye-pupil {
+  width: 60px;
+  height: 60px;
+  background: #000;
+  position: absolute;
+  z-index: 10;
+  border-radius: 60%;
+}
+.eye-pupil::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 11px;
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  z-index: 100;
+  border-radius: 60%;
+  background-image: radial-gradient(
+    circle,
+    rgb(225, 225, 225),
+    rgb(225, 225, 225),
+    rgba(225, 225, 225, 0.9),
+    rgba(225, 225, 225, 0.3)
+  );
+}
+
+.sharingan {
+  width: 55px;
+  height: 55px;
+  background: #ff0000;
+  position: absolute;
+  border-radius: 60%;
+  box-shadow: 0 0 2px 4px #bd0000 inset, 0 0 0 2px #000;
+}
+
+.sharingan .iris {
+  width: 64%;
+  height: 64%;
+  background: #ff0000;
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 10px;
+  margin: 0 auto;
+  border-radius: 60%;
+  box-shadow: 0 0 2px 0 #b20000 inset;
+}
+
+.sharingan .iris::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 11px;
+  position: absolute;
+  left: 3px;
+  top: 4px;
+  z-index: 100;
+  border-radius: 60%;
+  background-image: radial-gradient(
+    circle,
+    rgb(225, 225, 225),
+    rgb(225, 225, 225),
+    rgba(225, 225, 225, 0.7),
+    rgba(225, 225, 225, 0.3)
+  );
+}
+
+.sharingan .iris::after {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  background: #000;
+  right: 0;
+  left: -1px;
+  top: 13px;
+  z-index: 100;
+  margin: 0 auto;
+  border-radius: 60%;
+  transform: rotate(150deg);/* 似乎没用 */
+  animation: colour 0.5s ease-in 7s; /* 似乎没用 */
+}
+
+@keyframes colour {
+  0% {
+    background: #000;
+  }
+  100% {
+    background: #f00;
+  }
+}
+
+
+/* 勾玉 */
+.hook {
+  width: 92%;
+  height: 92%;
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 5%;
+  margin: 0 auto;
+  border-radius: 60%;
+}
+
+.hook .bar1 {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 60%;
+}
+.hook .bar1 b {
+  display: block;
+  width: 8px;
+  height: 8px;
+  background: #000;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border-radius: 60%;
+}
+.hook .bar1 b:after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-color: transparent transparent #000 transparent;
+  border-style: solid;
+  border-width: 0 0 5px 0;
+  position: absolute;
+  top: -1px;
+  left: -3px;
+  z-index: 100;
+  border-radius: 0 0 0 70%;
+  transform: rotate(-75deg);
+}
+.hook .bar1:nth-child(1) {
+  transform: rotate(10deg);
+}
+.hook .bar1:nth-child(2) {
+  transform: rotate(130deg);
+}
+.hook .bar1:nth-child(3) {
+  transform: rotate(250deg);
+}
+/* 万花筒写轮眼 */
+.tube {
+  width: 93%;
+  height: 93%;
+  position: absolute;
+  right: 0;
+  left: 0px;
+  top: 2px;
+  margin: 0 auto;
+  background: #000;
+  border-radius: 60%;
+}
+.tube .bar1 {
+  display: block;
+  width: 10px;
+  height: 20px;
+  border-style: solid;
+  border-width: 0 0 0 10px;
+  border-color: transparent transparent transparent black;
+  position: absolute;
+  border-radius: 100% 0 0 0;
+}
+.tube .bar1:nth-child(1) {
+  top: -10px;
+  left: 2px;
+  transform: rotate(-10deg);
+}
+.tube .bar1:nth-child(2) {
+  bottom: 0px;
+  right: -10px;
+  transform: rotate(105deg);
+  -webkit-transform: rotate(105deg);
+  -o-transform: rotate(105deg);
+}
+.tube .bar1:nth-child(3) {
+  bottom: -3px;
+  left: -10px;
+  transform: rotate(235deg);
+  -webkit-transform: rotate(235deg);
+  -o-transform: rotate(235deg);
+}
+
+/*轮回眼*/
+.trans {
+  width: 130px;
+  height: 70px;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  border-radius: 0 70px 0 50px;
+}
+.trans .bar {
+  display: block;
+  width: 9px;
+  height: 9px;
+  background: #000;
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  margin: -4px 0 0 -4px;
+  border-radius: 60%;
+}
+.trans .bar:after {
+  content: '';
+  display: block;
+  width: 11px;
+  height: 12px;
+  position: absolute;
+  top: -13px;
+  left: -13px;
+  z-index: 100;
+  border-radius: 60%;
+  background: rgba(250, 250, 250, 0.85);
+}
+.left .trans .bar {
+  transform: skewX(-15deg);
+}
+.left .trans .bar {
+  left: 48%;
+}
+
+/* 三勾玉动画 */
+.ani-rotateHook {
+  animation: ani-rotateHook 5s ease-in 2.5s;
+  -webkit-animation: ani-rotateHook 5s ease-in 2.5s;
+  -o-animation: ani-rotateHook 5s ease-in 2.5s;
+}
+@keyframes ani-rotateHook {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(0);
+  }
+  15% {
+    opacity: 1;
+    transform: scale(1) rotate(-360deg);
+  }
+  90% {
+    opacity: 1;
+    transform: scale(1) rotate(-360deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.8) rotate(-540deg);
+  }
+}
+
+
+/* 缩小动画 */
+.ani-zoom-out {
+  animation: ani-zoom-out 0.5s linear 1s;
+}
+@keyframes ani-zoom-out {
+  from {
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+/* 放大动画 */
+.ani-zoom-in {
+  animation: ani-zoom-in 11s linear 0.8s;
+}
+@keyframes ani-zoom-in {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  6% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  95% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+/* 万花筒写轮眼动画 */
+.ani-rotateTube {
+  animation: ani-rotateTube 5s ease-in-out 6.5s;
+}
+@keyframes ani-rotateTube {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(0);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1) rotate(-360deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(-360deg);
+  }
+}
+/*轮回眼动画*/
+.ani-shadow {
+  animation: ani-shadow 1s linear ;
+}
+@keyframes ani-shadow {
+  0% {
+    opacity: 0;
+    box-shadow: none;
+  }
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 14px #464646, 0 0 0 16px #000, 0 0 0 30px #6c6c6c,
+      0 0 0 32px #000, 0 0 0 44px #a6a6a6, 0 0 0 46px #000;
+  }
+}
+
+.ani-zoom-out,
+.ani-zoom-in,
+.ani-rotateHook,
+.ani-rotateTube,
+.ani-shadow,
+.eyes .line:after {
+  animation-fill-mode: both;
+}
+
+.flip-right {
+  transform: scaleX(-1);
+}
