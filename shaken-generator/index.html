@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../node_modules/react/umd/react.development.js"></script>
+    <script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script src="../node_modules/babel-standalone/babel.min.js"></script>
+    <script src="../js/cubic-bezier.js"></script>
+    <link
+      rel="stylesheet"
+      href="../node_modules/bootstrap/dist/css/bootstrap.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/bootstrap-icons/font/bootstrap-icons.css"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function rand(min, max) {
+        return +(min + Math.random() * (max - min)).toFixed(1)
+      }
+
+      function Display({ info }) {
+        const {
+          times,
+          minTrans,
+          maxTrans,
+          needRotation,
+          minRotate,
+          maxRotate,
+          aniPrefix,
+          aniCount,
+        } = info
+
+        const styles = [...Array(aniCount)]
+          .map(
+            (_, index) => `
+          @keyframes ${aniPrefix}_${index} {
+            ${[...Array(times)]
+              .map(
+                (_, fi) => `\
+                  ${((100 / times) * fi).toFixed(2)}% {
+                  transform: translate(${rand(minTrans, maxTrans)}px, ${rand(
+                  minTrans,
+                  maxTrans
+                )}px) ${
+                  needRotation ? `rotate(${rand(minRotate, maxRotate)}deg)` : ''
+                };
+                }
+              `
+              )
+              .join('\n')}
+            100% {
+              transform: translate(0, 0) rotate(0deg);
+            }
+          }
+        `
+          )
+
+
+        return (
+          <div className="mt-3 mb-3">
+            <textarea
+              className="form-control"
+              id="exampleFormControlTextarea1"
+              rows={3}
+              value={styles.join('\n').trim()}
+              onChange={() => {}}
+              onFocus={e => e.target.select()}
+            />
+          </div>
+        )
+      }
+
+      function App() {
+        const [info, setInfo] = React.useState(null)
+
+        const handleSubmit = (e) => {
+          e.preventDefault()
+          let data = new FormData(e.target)
+          const times = +data.get('times') || 20
+          const minTrans = +data.get('minTrans') || 0
+          const maxTrans = +data.get('maxTrans') || 10
+          const needRotation = data.get('needRotation') === 'on'
+          const minRotate = +data.get('minRotate') || -10
+          const maxRotate = +data.get('maxRotate') || 10
+          const aniPrefix = data.get('aniPrefix') || '__shaken__'
+          const aniCount = data.get('aniCount') || 1
+
+          setInfo({
+            times,
+            minTrans,
+            maxTrans,
+            needRotation,
+            minRotate,
+            maxRotate,
+            aniPrefix,
+            aniCount,
+          })
+        }
+
+        return (
+          <div className="container mt-3">
+            <form onSubmit={handleSubmit}>
+              <div className="row mb-3">
+                <label className="col-sm-2 col-form-label">震动次数</label>
+                <div className="col-sm-10">
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="times"
+                    defaultValue={20}
+                  />
+                </div>
+              </div>
+              <div className="row mb-3">
+                <label className="col-sm-2 col-form-label">振幅</label>
+                <div className="col-sm-5">
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="minTrans"
+                    placeholder="最小值"
+                    defaultValue={-20}
+                  />
+                </div>
+                <div className="col-sm-5">
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="maxTrans"
+                    placeholder="最大值"
+                    defaultValue={20}
+                  />
+                </div>
+              </div>
+
+              <div className="row mb-3">
+                <div className="col-sm-10 offset-sm-2">
+                  <div className="form-check">
+                    <label className="form-check-label">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        name="needRotation"
+                      />
+                      倾斜
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div className="row mb-3">
+                <label className="col-sm-2 col-form-label">角度范围</label>
+                <div className="col-sm-5">
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="minRotate"
+                    placeholder="最小值"
+                    defaultValue={-10}
+                  />
+                </div>
+                <div className="col-sm-5">
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="maxRotate"
+                    placeholder="最大值"
+                    defaultValue={10}
+                  />
+                </div>
+              </div>
+
+              <div className="row mb-3">
+                <label className="col-sm-2 col-form-label">相关信息</label>
+                <div className="col-sm-5">
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="aniPrefix"
+                    placeholder="前缀"
+                    defaultValue={'__shaken__'}
+                  />
+                </div>
+                <div className="col-sm-5">
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="aniCount"
+                    placeholder="数量"
+                    defaultValue={1}
+                  />
+                </div>
+              </div>
+
+              <button type="submit" className="btn btn-primary">
+                生成
+              </button>
+            </form>
+
+            {info && <Display info={info} />}
+          </div>
+        )
+      }
+
+      ReactDOM.render(<App />, document.getElementById('root'))
+    </script>
+  </body>
+</html>

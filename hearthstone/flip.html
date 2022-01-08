@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .flip-wrapper {
+        perspective: 1000;
+        position: relative;
+        animation-fill-mode: backwards;
+      }
+      .flip-wrapper .pane {
+        width: 320px;
+        backface-visibility: hidden;
+        position: absolute;
+        left: 0;
+        top: 0;
+        animation-fill-mode: both;
+      }
+      .front {
+        transform: rotateY(0deg);
+      }
+      .back {
+        transform: rotateY(180deg);
+      }
+      .animation-shaken {
+        animation-name: blink, __shaken___0;
+        animation-duration: 0.4s;
+        animation-timing-function: cubic-bezier(0.17, 0.67, 0.72, 0.11);
+      }
+      @keyframes blink {
+        0% {
+          opacity: 1;
+        }
+        15% {
+          opacity: 0;
+        }
+        30% {
+          opacity: 1;
+        }
+        45% {
+          opacity: 0;
+        }
+        60% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      @keyframes shaken {
+        0% {
+          transform: rotate(0deg) translate(0, 0);
+        }
+        13% {
+          transform: rotate(4deg) translate(-20px, -1px);
+        }
+        25% {
+          transform: rotate(-4deg) translate(2px, -15px);
+        }
+        40% {
+          transform: rotate(5deg) translate(10px, -12px);
+        }
+        65% {
+          transform: rotate(-3deg) translate(-13px, 8px);
+        }
+        90% {
+          transform: rotate(5deg) translate(21px, -1px);
+        }
+      }
+
+      @keyframes __shaken___0 {
+        0.00% {
+          transform: translate(-17.1px, -20.1px) rotate(5.5deg);
+        }
+
+        5.00% {
+          transform: translate(9.4px, -17.5px) rotate(1.8deg);
+        }
+
+        10.00% {
+          transform: translate(10.9px, 23.4px) rotate(-0.1deg);
+        }
+
+        15.00% {
+          transform: translate(-13.4px, -16.1px) rotate(-1.9deg);
+        }
+
+        20.00% {
+          transform: translate(-29.2px, 14.5px) rotate(0.2deg);
+        }
+
+        25.00% {
+          transform: translate(-6.7px, 18.5px) rotate(-0.2deg);
+        }
+
+        30.00% {
+          transform: translate(-22.1px, 10.6px) rotate(-2.7deg);
+        }
+
+        35.00% {
+          transform: translate(-15.6px, 3.4px) rotate(-4.2deg);
+        }
+
+        40.00% {
+          transform: translate(29.7px, 17px) rotate(-9.1deg);
+        }
+
+        45.00% {
+          transform: translate(-20.6px, -14.8px) rotate(9.6deg);
+        }
+
+        50.00% {
+          transform: translate(8.9px, -17.8px) rotate(9.7deg);
+        }
+
+        55.00% {
+          transform: translate(-3.1px, -27.4px) rotate(1.8deg);
+        }
+
+        60.00% {
+          transform: translate(-5.5px, 0.3px) rotate(-1deg);
+        }
+
+        65.00% {
+          transform: translate(-28.5px, 28.7px) rotate(-6.4deg);
+        }
+
+        70.00% {
+          transform: translate(-8.4px, 12.2px) rotate(2.2deg);
+        }
+
+        75.00% {
+          transform: translate(21.3px, 21.1px) rotate(-3.1deg);
+        }
+
+        80.00% {
+          transform: translate(-18.8px, 1.6px) rotate(-7.2deg);
+        }
+
+        85.00% {
+          transform: translate(2.2px, -28.3px) rotate(9.5deg);
+        }
+
+        90.00% {
+          transform: translate(28.2px, -23.5px) rotate(1.7deg);
+        }
+
+        95.00% {
+          transform: translate(11.7px, -11.6px) rotate(3deg);
+        }
+
+        100% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button>backward</button>
+    <button>forward</button>
+    <div class="flip-wrapper">
+      <img src="loading.png" class="front pane" />
+      <img src="card.png" class="back pane" />
+    </div>
+  </body>
+</html>
